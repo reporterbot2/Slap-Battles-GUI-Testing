@@ -1,0 +1,142 @@
+local MainGui = Instance.new("ScreenGui")
+MainGui.Name = "MainGui"
+MainGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+MainGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local Frame = Instance.new("Frame")
+Frame.Name = "Frame"
+Frame.Position = UDim2.new(0.139116, 0, 0.363086, 0)
+Frame.Size = UDim2.new(0, 306, 0, 274)
+Frame.BackgroundColor3 = Color3.new(0.345098, 0.345098, 0.345098)
+Frame.BorderSizePixel = 0
+Frame.BorderColor3 = Color3.new(0, 0, 0)
+Frame.Parent = MainGui
+
+local UICorner = Instance.new("UICorner")
+UICorner.Name = "UICorner"
+
+UICorner.Parent = Frame
+
+local UIStroke = Instance.new("UIStroke")
+UIStroke.Name = "UIStroke"
+UIStroke.Thickness = 3.200000047683716
+UIStroke.Parent = Frame
+
+local TextLabel = Instance.new("TextLabel")
+TextLabel.Name = "TextLabel"
+TextLabel.Position = UDim2.new(0.173203, 0, 0, 0)
+TextLabel.Size = UDim2.new(0, 200, 0, 38)
+TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel.BackgroundTransparency = 1
+TextLabel.BorderSizePixel = 0
+TextLabel.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel.Transparency = 1
+TextLabel.Text = "\\ Slap battles GUI //"
+TextLabel.TextColor3 = Color3.new(0, 0, 0)
+TextLabel.TextSize = 14
+TextLabel.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+TextLabel.TextScaled = true
+TextLabel.TextWrapped = true
+TextLabel.Parent = Frame
+
+local Frame2 = Instance.new("Frame")
+Frame2.Name = "Frame"
+Frame2.Position = UDim2.new(0.212418, 0, 0.138686, 0)
+Frame2.Size = UDim2.new(0, 182, 0, 2)
+Frame2.BackgroundColor3 = Color3.new(1, 1, 1)
+Frame2.BorderSizePixel = 0
+Frame2.BorderColor3 = Color3.new(0, 0, 0)
+Frame2.Parent = Frame
+
+local defaultaura = Instance.new("TextButton")
+defaultaura.Name = "defaultaura"
+defaultaura.Position = UDim2.new(0.0457516, 0, 0.171533, 0)
+defaultaura.Size = UDim2.new(0, 280, 0, 33)
+defaultaura.BackgroundColor3 = Color3.new(1, 1, 1)
+defaultaura.BackgroundTransparency = 0.04999999701976776
+defaultaura.BorderSizePixel = 0
+defaultaura.BorderColor3 = Color3.new(0, 0, 0)
+defaultaura.Transparency = 0.04999999701976776
+defaultaura.Text = "Slap aura (default glove): OFF"
+defaultaura.TextColor3 = Color3.new(0, 0, 0)
+defaultaura.TextSize = 14
+defaultaura.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+defaultaura.TextScaled = true
+defaultaura.TextWrapped = true
+defaultaura.Parent = Frame
+
+local UICorner2 = Instance.new("UICorner")
+UICorner2.Name = "UICorner"
+
+UICorner2.Parent = defaultaura
+
+local extendedaura = Instance.new("TextButton")
+extendedaura.Name = "extendedaura"
+extendedaura.Position = UDim2.new(0.0457516, 0, 0.317518, 0)
+extendedaura.Size = UDim2.new(0, 280, 0, 33)
+extendedaura.BackgroundColor3 = Color3.new(1, 1, 1)
+extendedaura.BackgroundTransparency = 0.04999999701976776
+extendedaura.BorderSizePixel = 0
+extendedaura.BorderColor3 = Color3.new(0, 0, 0)
+extendedaura.Transparency = 0.04999999701976776
+extendedaura.Text = "Slap aura (extended glove): OFF"
+extendedaura.TextColor3 = Color3.new(0, 0, 0)
+extendedaura.TextSize = 14
+extendedaura.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+extendedaura.TextScaled = true
+extendedaura.TextWrapped = true
+extendedaura.Parent = Frame
+
+local UICorner3 = Instance.new("UICorner")
+UICorner3.Name = "UICorner"
+
+UICorner3.Parent = extendedaura
+
+local killstreakaura = Instance.new("TextButton")
+killstreakaura.Name = "killstreakaura"
+killstreakaura.Position = UDim2.new(0.0457516, 0, 0.470803, 0)
+killstreakaura.Size = UDim2.new(0, 280, 0, 33)
+killstreakaura.BackgroundColor3 = Color3.new(1, 1, 1)
+killstreakaura.BackgroundTransparency = 0.04999999701976776
+killstreakaura.BorderSizePixel = 0
+killstreakaura.BorderColor3 = Color3.new(0, 0, 0)
+killstreakaura.Transparency = 0.04999999701976776
+killstreakaura.Text = "Killstreak slap aura: OFF"
+killstreakaura.TextColor3 = Color3.new(0, 0, 0)
+killstreakaura.TextSize = 14
+killstreakaura.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+killstreakaura.TextScaled = true
+killstreakaura.TextWrapped = true
+killstreakaura.Parent = Frame
+
+local UICorner4 = Instance.new("UICorner")
+UICorner4.Name = "UICorner"
+
+UICorner4.Parent = killstreakaura
+
+local antivoid = Instance.new("TextButton")
+antivoid.Name = "antivoid"
+antivoid.Position = UDim2.new(0.0457516, 0, 0.620438, 0)
+antivoid.Size = UDim2.new(0, 280, 0, 33)
+antivoid.BackgroundColor3 = Color3.new(1, 1, 1)
+antivoid.BackgroundTransparency = 0.04999999701976776
+antivoid.BorderSizePixel = 0
+antivoid.BorderColor3 = Color3.new(0, 0, 0)
+antivoid.Transparency = 0.04999999701976776
+antivoid.Text = "Anti void: OFF"
+antivoid.TextColor3 = Color3.new(0, 0, 0)
+antivoid.TextSize = 14
+antivoid.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+antivoid.TextScaled = true
+antivoid.TextWrapped = true
+antivoid.Parent = Frame
+
+local UICorner5 = Instance.new("UICorner")
+UICorner5.Name = "UICorner"
+
+UICorner5.Parent = antivoid
+
+local UIDragDetector = Instance.new("UIDragDetector")
+UIDragDetector.Name = "UIDragDetector"
+
+UIDragDetector.Parent = MainGui
