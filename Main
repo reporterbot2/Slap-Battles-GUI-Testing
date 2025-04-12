@@ -1,142 +1,182 @@
-local MainGui = Instance.new("ScreenGui")
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local LocalPlayer = Players.LocalPlayer
+local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+
+local MainGui = Instance.new("ScreenGui", PlayerGui)
 MainGui.Name = "MainGui"
 MainGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-MainGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
-local Frame = Instance.new("Frame")
+local Frame = Instance.new("Frame", MainGui)
 Frame.Name = "Frame"
 Frame.Position = UDim2.new(0.139116, 0, 0.363086, 0)
 Frame.Size = UDim2.new(0, 306, 0, 274)
-Frame.BackgroundColor3 = Color3.new(0.345098, 0.345098, 0.345098)
+Frame.BackgroundColor3 = Color3.fromRGB(88, 88, 88)
 Frame.BorderSizePixel = 0
-Frame.BorderColor3 = Color3.new(0, 0, 0)
-Frame.Parent = MainGui
 
-local UICorner = Instance.new("UICorner")
-UICorner.Name = "UICorner"
+Instance.new("UICorner", Frame)
+Instance.new("UIStroke", Frame).Thickness = 3.2
 
-UICorner.Parent = Frame
-
-local UIStroke = Instance.new("UIStroke")
-UIStroke.Name = "UIStroke"
-UIStroke.Thickness = 3.200000047683716
-UIStroke.Parent = Frame
-
-local thing = Instance.new("TextLabel")
-thing.Name = "thing"
-thing.Position = UDim2.new(0.173203, 0, 0, 0)
+local thing = Instance.new("TextLabel", Frame)
+thing.Position = UDim2.new(0.173, 0, 0, 0)
 thing.Size = UDim2.new(0, 200, 0, 38)
-thing.BackgroundColor3 = Color3.new(1, 1, 1)
 thing.BackgroundTransparency = 1
-thing.BorderSizePixel = 0
-thing.BorderColor3 = Color3.new(0, 0, 0)
-thing.Transparency = 1
 thing.Text = "Slap battles GUI"
 thing.TextColor3 = Color3.new(0, 0, 0)
 thing.TextSize = 14
-thing.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+thing.Font = Enum.Font.SourceSans
 thing.TextScaled = true
 thing.TextWrapped = true
-thing.Parent = Frame
 
-local Frame2 = Instance.new("Frame")
-Frame2.Name = "Frame"
-Frame2.Position = UDim2.new(0.212418, 0, 0.138686, 0)
-Frame2.Size = UDim2.new(0, 182, 0, 2)
-Frame2.BackgroundColor3 = Color3.new(1, 1, 1)
-Frame2.BorderSizePixel = 0
-Frame2.BorderColor3 = Color3.new(0, 0, 0)
-Frame2.Parent = Frame
+local function createButton(name, posY, text)
+	local btn = Instance.new("TextButton", Frame)
+	btn.Name = name
+	btn.Position = UDim2.new(0.045, 0, posY, 0)
+	btn.Size = UDim2.new(0, 280, 0, 33)
+	btn.BackgroundColor3 = Color3.new(1, 1, 1)
+	btn.BackgroundTransparency = 0.05
+	btn.Text = text .. ": OFF"
+	btn.TextColor3 = Color3.new(0, 0, 0)
+	btn.TextSize = 14
+	btn.Font = Enum.Font.SourceSans
+	btn.TextScaled = true
+	btn.TextWrapped = true
+	Instance.new("UICorner", btn)
+	return btn
+end
 
-local defaultaura = Instance.new("TextButton")
-defaultaura.Name = "defaultaura"
-defaultaura.Position = UDim2.new(0.0457516, 0, 0.171533, 0)
-defaultaura.Size = UDim2.new(0, 280, 0, 33)
-defaultaura.BackgroundColor3 = Color3.new(1, 1, 1)
-defaultaura.BackgroundTransparency = 0.04999999701976776
-defaultaura.BorderSizePixel = 0
-defaultaura.BorderColor3 = Color3.new(0, 0, 0)
-defaultaura.Transparency = 0.04999999701976776
-defaultaura.Text = "Slap aura (default glove): OFF"
-defaultaura.TextColor3 = Color3.new(0, 0, 0)
-defaultaura.TextSize = 14
-defaultaura.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
-defaultaura.TextScaled = true
-defaultaura.TextWrapped = true
-defaultaura.Parent = Frame
+local defaultAuraBtn = createButton("defaultaura", 0.171, "Slap aura (default glove)")
+local extendedAuraBtn = createButton("extendedaura", 0.318, "Slap aura (extended glove)")
+local killstreakAuraBtn = createButton("killstreakaura", 0.471, "Killstreak slap aura")
+local antivoidBtn = createButton("antivoid", 0.620, "Anti void")
 
-local UICorner2 = Instance.new("UICorner")
-UICorner2.Name = "UICorner"
+-- Dragging for Frame (PC & Mobile)
+local dragging, dragInput, dragStart, startPos
+Frame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = Frame.Position
 
-UICorner2.Parent = defaultaura
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
 
-local extendedaura = Instance.new("TextButton")
-extendedaura.Name = "extendedaura"
-extendedaura.Position = UDim2.new(0.0457516, 0, 0.317518, 0)
-extendedaura.Size = UDim2.new(0, 280, 0, 33)
-extendedaura.BackgroundColor3 = Color3.new(1, 1, 1)
-extendedaura.BackgroundTransparency = 0.04999999701976776
-extendedaura.BorderSizePixel = 0
-extendedaura.BorderColor3 = Color3.new(0, 0, 0)
-extendedaura.Transparency = 0.04999999701976776
-extendedaura.Text = "Slap aura (extended glove): OFF"
-extendedaura.TextColor3 = Color3.new(0, 0, 0)
-extendedaura.TextSize = 14
-extendedaura.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
-extendedaura.TextScaled = true
-extendedaura.TextWrapped = true
-extendedaura.Parent = Frame
+Frame.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
 
-local UICorner3 = Instance.new("UICorner")
-UICorner3.Name = "UICorner"
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+	if input == dragInput and dragging then
+		local delta = input.Position - dragStart
+		Frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+end)
 
-UICorner3.Parent = extendedaura
+-- Aura logic toggles
+local auraThreads = {
+	default = nil,
+	extended = nil,
+	killstreak = nil,
+}
+local antiVoidPart = nil
 
-local killstreakaura = Instance.new("TextButton")
-killstreakaura.Name = "killstreakaura"
-killstreakaura.Position = UDim2.new(0.0457516, 0, 0.470803, 0)
-killstreakaura.Size = UDim2.new(0, 280, 0, 33)
-killstreakaura.BackgroundColor3 = Color3.new(1, 1, 1)
-killstreakaura.BackgroundTransparency = 0.04999999701976776
-killstreakaura.BorderSizePixel = 0
-killstreakaura.BorderColor3 = Color3.new(0, 0, 0)
-killstreakaura.Transparency = 0.04999999701976776
-killstreakaura.Text = "Killstreak slap aura: OFF"
-killstreakaura.TextColor3 = Color3.new(0, 0, 0)
-killstreakaura.TextSize = 14
-killstreakaura.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
-killstreakaura.TextScaled = true
-killstreakaura.TextWrapped = true
-killstreakaura.Parent = Frame
+defaultAuraBtn.MouseButton1Click:Connect(function()
+	if auraThreads.default then
+		auraThreads.default:Disconnect()
+		auraThreads.default = nil
+		defaultAuraBtn.Text = "Slap aura (default glove): OFF"
+	else
+		defaultAuraBtn.Text = "Slap aura (default glove): ON"
+		auraThreads.default = game:GetService("RunService").Heartbeat:Connect(function()
+			local closest, dist = nil, math.huge
+			for _, player in pairs(Players:GetPlayers()) do
+				if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+					local d = (Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude
+					if d < dist then
+						dist = d
+						closest = player
+					end
+				end
+			end
+			if closest and closest.Character and closest.Character:FindFirstChild("Right Arm") then
+				ReplicatedStorage:WaitForChild("b"):FireServer(closest.Character["Right Arm"])
+			end
+		end)
+	end
+end)
 
-local UICorner4 = Instance.new("UICorner")
-UICorner4.Name = "UICorner"
+extendedAuraBtn.MouseButton1Click:Connect(function()
+	if auraThreads.extended then
+		auraThreads.extended:Disconnect()
+		auraThreads.extended = nil
+		extendedAuraBtn.Text = "Slap aura (extended glove): OFF"
+	else
+		extendedAuraBtn.Text = "Slap aura (extended glove): ON"
+		auraThreads.extended = game:GetService("RunService").Heartbeat:Connect(function()
+			local closest, dist = nil, math.huge
+			for _, player in pairs(Players:GetPlayers()) do
+				if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Head") then
+					local d = (player.Character.Head.Position - Character.Head.Position).Magnitude
+					if d < dist then
+						dist = d
+						closest = player
+					end
+				end
+			end
+			if closest and closest.Character and closest.Character:FindFirstChild("Head") then
+				ReplicatedStorage:WaitForChild("b"):FireServer(closest.Character.Head)
+			end
+		end)
+	end
+end)
 
-UICorner4.Parent = killstreakaura
+killstreakAuraBtn.MouseButton1Click:Connect(function()
+	if auraThreads.killstreak then
+		auraThreads.killstreak:Disconnect()
+		auraThreads.killstreak = nil
+		killstreakAuraBtn.Text = "Killstreak slap aura: OFF"
+	else
+		killstreakAuraBtn.Text = "Killstreak slap aura: ON"
+		auraThreads.killstreak = game:GetService("RunService").Heartbeat:Connect(function()
+			local closest, dist = nil, math.huge
+			for _, player in pairs(Players:GetPlayers()) do
+				if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Right Arm") and Character:FindFirstChild("Head") then
+					local d = (player.Character["Right Arm"].Position - Character.Head.Position).Magnitude
+					if d < dist then
+						dist = d
+						closest = player
+					end
+				end
+			end
+			if closest and closest.Character and closest.Character:FindFirstChild("Right Arm") then
+				ReplicatedStorage:WaitForChild("KSHit"):FireServer(closest.Character["Right Arm"])
+			end
+		end)
+	end
+end)
 
-local antivoid = Instance.new("TextButton")
-antivoid.Name = "antivoid"
-antivoid.Position = UDim2.new(0.0457516, 0, 0.620438, 0)
-antivoid.Size = UDim2.new(0, 280, 0, 33)
-antivoid.BackgroundColor3 = Color3.new(1, 1, 1)
-antivoid.BackgroundTransparency = 0.04999999701976776
-antivoid.BorderSizePixel = 0
-antivoid.BorderColor3 = Color3.new(0, 0, 0)
-antivoid.Transparency = 0.04999999701976776
-antivoid.Text = "Anti void: OFF"
-antivoid.TextColor3 = Color3.new(0, 0, 0)
-antivoid.TextSize = 14
-antivoid.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
-antivoid.TextScaled = true
-antivoid.TextWrapped = true
-antivoid.Parent = Frame
-
-local UICorner5 = Instance.new("UICorner")
-UICorner5.Name = "UICorner"
-
-UICorner5.Parent = antivoid
-
-local UIDragDetector = Instance.new("UIDragDetector")
-UIDragDetector.Name = "UIDragDetector"
-
-UIDragDetector.Parent = Frame
+antivoidBtn.MouseButton1Click:Connect(function()
+	if antiVoidPart then
+		antiVoidPart:Destroy()
+		antiVoidPart = nil
+		antivoidBtn.Text = "Anti void: OFF"
+	else
+		antiVoidPart = Instance.new("Part")
+		antiVoidPart.Anchored = true
+		antiVoidPart.Size = Vector3.new(2040, 3, 2040)
+		antiVoidPart.Position = Vector3.new(40.43, -12.81, 107.87)
+		antiVoidPart.Transparency = 0.5
+		antiVoidPart.CanCollide = true
+		antiVoidPart.Name = "AntiVoidPart"
+		antiVoidPart.Parent = workspace
+		antivoidBtn.Text = "Anti void: ON"
+	end
+end)
